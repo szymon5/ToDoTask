@@ -17,6 +17,26 @@ namespace ToDoTask.Repositories
             else return false;
         }
 
-        public List<SingleTask> GetTasks(DateTime day) => this.context.SingleTasks.Where(x => x.Day == day).ToList();
+        public bool EditTask(SingleTask singleTask)
+        {
+            var currentSingleTask = context.SingleTasks.FirstOrDefault(x => x.Id == singleTask.Id);
+
+            if(currentSingleTask != null)
+            {
+                currentSingleTask.Title = singleTask.Title;
+                currentSingleTask.Description = singleTask.Description;
+                currentSingleTask.Day = singleTask.Day;
+
+                if (context.SaveChanges() == 1) return true;
+                else return false;
+            }
+            else return false;
+        }
+
+        public List<SingleTask> GetAllTasks() => context.SingleTasks.ToList();
+
+        public SingleTask GetTaskByID(int id) => context.SingleTasks.FirstOrDefault(x => x.Id == id);
+
+        public List<SingleTask> GetTasks(DateTime day) => context.SingleTasks.Where(x => x.Day == day).ToList();
     }
 }
