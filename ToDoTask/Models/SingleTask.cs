@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-namespace ToDoTask.Models
+﻿namespace ToDoTask.Models
 {
     public class SingleTask
     {

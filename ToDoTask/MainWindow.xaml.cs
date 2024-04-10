@@ -29,12 +29,10 @@ namespace ToDoTask
             MainWindowViewModel.GetAllTasks();
         }
 
-        private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
-        {
-            MessageBox.Show(string.Format("{0:yyyy-MM-dd}", TaskCalendar.SelectedDate));
-        }
+        private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e) =>
+            MainWindowViewModel.GetTasksByDay(TaskCalendar.SelectedDate ?? DateTime.Now);
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void AddTask_Click(object sender, RoutedEventArgs e)
         {
             var newForm = new AddNewTask(_repository);
             newForm.Show();
@@ -49,5 +47,7 @@ namespace ToDoTask
                 newForm.Show();
             }
         }
+
+        private void GetAllTasks_Click(object sender, RoutedEventArgs e) => MainWindowViewModel.GetAllTasks();
     }
 }

@@ -9,6 +9,6 @@ namespace ToDoTask.Interfaces
         public List<SingleTask> GetAllTasks();
         public bool UpdateTask(SingleTask singleTask);
         public bool RemoveTask(int id);
-        public List<SingleTask> GetTasks(DateTime day);
+        public List<SingleTask> GetTasksByDay(DateTime day);
     }
 }
