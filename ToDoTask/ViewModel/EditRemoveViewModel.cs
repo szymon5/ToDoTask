@@ -33,7 +33,7 @@ namespace ToDoTask.ViewModel
         {
             if(title != "" && description != "")
             {
-                var updated = _repository.EditTask(new SingleTask()
+                var updated = _repository.UpdateTask(new SingleTask()
                 {
                     Id = singleTaskID,
                     Title = title,
@@ -53,5 +53,16 @@ namespace ToDoTask.ViewModel
         }
 
         public void SetTaskDay(string day) => this.day = day;
+
+        public bool RemoveTask()
+        {
+            var removed = _repository.RemoveTask(singleTaskID);
+            if (removed)
+            {
+                MainWindowViewModel.OnPageRefresh();
+                return true;
+            }
+            else return false;
+        }
     }
 }

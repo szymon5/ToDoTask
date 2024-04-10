@@ -7,7 +7,8 @@ namespace ToDoTask.Interfaces
         public bool AddTask(SingleTask singleTask);
         public SingleTask GetTaskByID(int id);
         public List<SingleTask> GetAllTasks();
-        public bool EditTask(SingleTask singleTask);
+        public bool UpdateTask(SingleTask singleTask);
+        public bool RemoveTask(int id);
         public List<SingleTask> GetTasks(DateTime day);
     }
 }
