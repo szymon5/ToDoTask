@@ -21,7 +21,7 @@ namespace ToDoTask.Repositories
         {
             var currentSingleTask = context.SingleTasks.FirstOrDefault(x => x.Id == singleTask.Id);
 
-            if(currentSingleTask != null)
+            if (currentSingleTask != null)
             {
                 currentSingleTask.Title = singleTask.Title;
                 currentSingleTask.Description = singleTask.Description;
@@ -41,7 +41,7 @@ namespace ToDoTask.Repositories
         {
             var task = context.SingleTasks.FirstOrDefault(x => x.Id == id);
 
-            if(task != null)
+            if (task != null)
             {
                 context.SingleTasks.Remove(task);
                 if (context.SaveChanges() == 1) return true;
@@ -51,6 +51,6 @@ namespace ToDoTask.Repositories
             else return false;
         }
 
-        public List<SingleTask> GetTasks(DateTime day) => context.SingleTasks.Where(x => x.Day == day).ToList();
+        public List<SingleTask> GetTasksByDay(DateTime day) => context.SingleTasks.Where(x => x.Day == day).ToList();
     }
 }

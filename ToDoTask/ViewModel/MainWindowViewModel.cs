@@ -30,9 +30,23 @@ namespace ToDoTask.ViewModel
 
         public void GetAllTasks()
         {
-            var tasks = _repository.GetAllTasks();
+            SingleTasks.Clear();
 
-            for(int i=0;i<tasks.Count; i++)
+            var tasks = _repository.GetAllTasks().OrderBy(x => x.Id).ToList();
+
+            for (int i=0;i<tasks.Count; i++)
+            {
+                SingleTasks.Add(tasks[i]);
+            }
+        }
+
+        public void GetTasksByDay(DateTime day)
+        {
+            SingleTasks.Clear();
+
+            var tasks = _repository.GetTasksByDay(day).OrderBy(x => x.Id).ToList();
+
+            for (int i = 0; i < tasks.Count; i++)
             {
                 SingleTasks.Add(tasks[i]);
             }
