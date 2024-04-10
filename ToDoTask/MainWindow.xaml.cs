@@ -1,13 +1,6 @@
-﻿using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using ToDoTask.Interfaces;
 
 namespace ToDoTask
 {
@@ -16,9 +9,23 @@ namespace ToDoTask
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private readonly IRepository _repository;
+
+        public MainWindow(IRepository repository)
         {
             InitializeComponent();
+            _repository = repository;
+        }
+
+        private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            MessageBox.Show(string.Format("{0:yyyy-MM-dd}", TaskCalendar.SelectedDate));
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var newForm = new AddNewTask(_repository);
+            newForm.Show();
         }
     }
 }

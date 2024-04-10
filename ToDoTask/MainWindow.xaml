@@ -3,10 +3,22 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ToDoTask"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="450" Width="942">
 
+    <Grid Margin="0,0,54,0">
+        <Calendar x:Name="TaskCalendar" SelectedDatesChanged="Calendar_SelectedDatesChanged" HorizontalAlignment="Left" VerticalAlignment="Top" Height="165" Width="184" Margin="55,5,0,0"/>
+        <ListView ItemsSource="{Binding SingleTasks}" Margin="282,10,-50,5">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding Id}" />
+                    <GridViewColumn Header="Title" Width="200" DisplayMemberBinding="{Binding Title}"/>
+                    <GridViewColumn Header="Description" Width="200" DisplayMemberBinding="{Binding Description}"/>
+                    <GridViewColumn Header="Day" Width="200" DisplayMemberBinding="{Binding Day}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <!--<Button Content="Add task" Command="{Binding AddTaskCommand}" HorizontalAlignment="Left" Margin="30,192,0,0" VerticalAlignment="Top" Height="40" Width="124"/>-->
+        <Button Content="Add task" Click="Button_Click" HorizontalAlignment="Left" Margin="71,228,0,0" VerticalAlignment="Top" Height="40" Width="124"/>
     </Grid>
 </Window>
