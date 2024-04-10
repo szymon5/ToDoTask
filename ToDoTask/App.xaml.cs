@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System.Configuration;
-using System.Data;
 using System.IO;
 using System.Windows;
+using ToDoTask.Interfaces;
+using ToDoTask.Repositories;
 using ToDoTask.Services;
 
 namespace ToDoTask
@@ -18,11 +18,11 @@ namespace ToDoTask
 
         public IConfiguration Configuration { get; private set; }
 
-        protected override void OnStartup(StartupEventArgs e)
+
+        protected override async void OnStartup(StartupEventArgs e)
         {
             var builder = new ConfigurationBuilder()
-             .SetBasePath(Directory.GetCurrentDirectory())
-             .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+             .SetBasePath(Directory.GetCurrentDirectory());
 
             Configuration = builder.Build();
 
@@ -37,11 +37,21 @@ namespace ToDoTask
             mainWindow.Show();
         }
 
+        //protected override async void OnExit(ExitEventArgs e)
+        //{
+        //    base.OnExit(e);
+
+        //    await AppHost!.StopAsync();
+        //}
+
         private void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<ApplicationDbContext, ApplicationDbContext>();
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer("Data Source=.;Initial Catalog=todotasks;Integrated Security=True;Trust Server Certificate=True"));
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer("Data Source=.;Initial Catalog=todolist;Integrated Security=True;Trust Server Certificate=True"));
             services.AddTransient(typeof(MainWindow));
+            services.AddSingleton<IRepository, Repository>();
+            //services.AddSingleton<SingleTaskViewModel, SingleTaskViewModel>();
+            //services.AddSingleton<AddSingleTaskCommand, AddSingleTaskCommand>();
         }
     }
 
