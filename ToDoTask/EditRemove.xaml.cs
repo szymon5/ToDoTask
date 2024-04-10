@@ -54,5 +54,20 @@ namespace ToDoTask
             MessageBox.Show(EditRemoveViewModel.EditTask(TaskTitle.Text, TaskDescription.Text));
 
         private void Cancel_Click(object sender, RoutedEventArgs e) => Close();
+
+        private void Remove_Click(object sender, RoutedEventArgs e)
+        {
+            var decision = MessageBox.Show("Are you sure you want to remove this task?","?", MessageBoxButton.YesNo);
+            if(decision == MessageBoxResult.Yes)
+            {
+                var remove = EditRemoveViewModel.RemoveTask();
+                if (remove)
+                {
+                    MessageBox.Show("The task has been removed");
+                    Close();
+                }
+                else MessageBox.Show("The task has not been removed");
+            }
+        }
     }
 }
