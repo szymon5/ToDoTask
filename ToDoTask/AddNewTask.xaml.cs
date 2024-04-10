@@ -17,14 +17,11 @@ using ToDoTask.ViewModel;
 
 namespace ToDoTask
 {
-    /// <summary>
-    /// Interaction logic for AddNewTask.xaml
-    /// </summary>
     public partial class AddNewTask : Window
     {
         private readonly IRepository _repository;
 
-        AddNewTaskViewModel MemoriesInTheSpecificGroupViewModel
+        AddNewTaskViewModel AddNewTaskViewModel
         {
             get => DataContext as AddNewTaskViewModel;
             set => DataContext = this;
@@ -37,16 +34,13 @@ namespace ToDoTask
             DataContext = new AddNewTaskViewModel(_repository);
         }
 
-        private void AddNewTask_Click(object sender, RoutedEventArgs e)
-        {
-            var added = MemoriesInTheSpecificGroupViewModel.AddNewTask(TaskTitle.Text, TaskDescription.Text);
-            if (added) Close();
-        }
+        private void AddNewTask_Click(object sender, RoutedEventArgs e) =>
+            System.Windows.MessageBox.Show(AddNewTaskViewModel.AddNewTask(TaskTitle.Text, TaskDescription.Text));
 
         private void TaskCalendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
             TaskDay.Text = NewTaskCalendar.SelectedDate.ToString();
-            MemoriesInTheSpecificGroupViewModel.SetTaskDay(NewTaskCalendar.SelectedDate.ToString());
+            AddNewTaskViewModel.SetTaskDay(NewTaskCalendar.SelectedDate.ToString());
         }
     }
 }

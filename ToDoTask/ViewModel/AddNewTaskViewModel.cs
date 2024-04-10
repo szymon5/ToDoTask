@@ -13,7 +13,7 @@ namespace ToDoTask.ViewModel
             _repository = repository;
         }
 
-        public bool AddNewTask(string title, string description)
+        public string AddNewTask(string title, string description)
         {
             if (title != "" && description != "" && day != "")
             {
@@ -24,25 +24,15 @@ namespace ToDoTask.ViewModel
                     Day = Convert.ToDateTime(day)
                 });
 
-                day = "";
-
                 if (added)
                 {
-                    MessageBox.Show("New task has been added");
-                    return true;
+                    day = "";
+                    MainWindowViewModel.OnPageRefresh();
+                    return "New task has been added";
                 }
-                else
-                {
-                    MessageBox.Show("Something went wrong. New task has not been added");
-                    return false;
-                }
+                else return "Something went wrong. New task has not been added";
             }
-            else
-            {
-                day = "";
-                MessageBox.Show("You have to provide all data");
-                return false;
-            }
+            else return "You have to provide all data";
         }
 
         public void SetTaskDay(string day) => this.day = day;
