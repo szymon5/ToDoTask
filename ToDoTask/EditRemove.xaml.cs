@@ -5,25 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using ToDoTask.Interfaces;
-using ToDoTask.Models;
 using ToDoTask.ViewModel;
 
 namespace ToDoTask
 {
-    /// <summary>
-    /// Interaction logic for EditRemove.xaml
-    /// </summary>
     public partial class EditRemove : Window
     {
-        private readonly IRepository _repository;
-
         EditRemoveViewModel EditRemoveViewModel
         {
             get => DataContext as EditRemoveViewModel;
@@ -33,7 +21,6 @@ namespace ToDoTask
         public EditRemove(IRepository repository, int singleTaskID)
         {
             InitializeComponent();
-            _repository = repository;
 
             DataContext = new EditRemoveViewModel(repository, singleTaskID);
 

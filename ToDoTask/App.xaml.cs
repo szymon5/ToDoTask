@@ -9,9 +9,6 @@ using ToDoTask.Services;
 
 namespace ToDoTask
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
         public IServiceProvider ServiceProvider { get; private set; }
@@ -26,8 +23,6 @@ namespace ToDoTask
 
             Configuration = builder.Build();
 
-            var x = Configuration.GetConnectionString("ToDoList");
-
             var serviceCollection = new ServiceCollection();
             ConfigureServices(serviceCollection);
 
@@ -37,21 +32,12 @@ namespace ToDoTask
             mainWindow.Show();
         }
 
-        //protected override async void OnExit(ExitEventArgs e)
-        //{
-        //    base.OnExit(e);
-
-        //    await AppHost!.StopAsync();
-        //}
-
         private void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<ApplicationDbContext, ApplicationDbContext>();
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer("Data Source=.;Initial Catalog=todolist;Integrated Security=True;Trust Server Certificate=True"));
             services.AddTransient(typeof(MainWindow));
             services.AddSingleton<IRepository, Repository>();
-            //services.AddSingleton<SingleTaskViewModel, SingleTaskViewModel>();
-            //services.AddSingleton<AddSingleTaskCommand, AddSingleTaskCommand>();
         }
     }
 

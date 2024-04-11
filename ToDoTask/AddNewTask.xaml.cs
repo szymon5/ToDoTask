@@ -1,17 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Forms;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using ToDoTask.Interfaces;
 using ToDoTask.ViewModel;
 
@@ -19,8 +7,6 @@ namespace ToDoTask
 {
     public partial class AddNewTask : Window
     {
-        private readonly IRepository _repository;
-
         AddNewTaskViewModel AddNewTaskViewModel
         {
             get => DataContext as AddNewTaskViewModel;
@@ -30,8 +16,7 @@ namespace ToDoTask
         public AddNewTask(IRepository repository)
         {
             InitializeComponent();
-            _repository = repository;
-            DataContext = new AddNewTaskViewModel(_repository);
+            DataContext = new AddNewTaskViewModel(repository);
         }
 
         private void AddNewTask_Click(object sender, RoutedEventArgs e) =>
