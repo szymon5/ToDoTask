@@ -1,0 +1,21 @@
+﻿<Window x:Class="ToDoTask.EditRemove"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ToDoTask"
+        mc:Ignorable="d"
+        Title="EditRemove" Height="332" Width="568">
+    <Grid>
+        <TextBox x:Name="TaskTitle" HorizontalAlignment="Left" Margin="134,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="184" Height="29"/>
+        <TextBox x:Name="TaskDescription" HorizontalAlignment="Left" Margin="134,74,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="184" Height="29"/>
+        <TextBox x:Name="TaskDay" IsReadOnly="True" HorizontalAlignment="Left" Margin="134,124,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="184" Height="29"/>
+        <Label Content="Task title" HorizontalAlignment="Left" Margin="21,20,0,0" VerticalAlignment="Top" Width="88"/>
+        <Label Content="Task description" HorizontalAlignment="Left" Margin="21,76,0,0" VerticalAlignment="Top" Width="88"/>
+        <Label Content="Task day" HorizontalAlignment="Left" Margin="21,126,0,0" VerticalAlignment="Top" Width="88"/>
+        <Calendar x:Name="NewTaskCalendar" SelectedDatesChanged="NewTaskCalendar_SelectedDatesChanged" HorizontalAlignment="Left" VerticalAlignment="Top" Height="165" Width="184" Margin="345,20,0,0"/>
+        <Button Content="Edit" Click="EditTask_Click" FontSize="20" HorizontalAlignment="Left" Margin="21,212,0,0" VerticalAlignment="Top" Height="44" Width="102"/>
+        <Button Content="Remove" Click="Remove_Click" FontSize="20" HorizontalAlignment="Left" Margin="162,211,0,0" VerticalAlignment="Top" Height="45" Width="102"/>
+        <Button Content="Cancel" Click="Cancel_Click" FontSize="20" HorizontalAlignment="Left" Margin="316,211,0,0" VerticalAlignment="Top" Height="45" Width="102"/>
+    </Grid>
+</Window>

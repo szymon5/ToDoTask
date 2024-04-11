@@ -3,10 +3,27 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ToDoTask"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="450" Width="944">
 
+    <Grid Margin="0,0,54,0">
+        <Calendar x:Name="TaskCalendar" SelectedDatesChanged="Calendar_SelectedDatesChanged" HorizontalAlignment="Left" VerticalAlignment="Top" Height="165" Width="184" Margin="10,5,0,0"/>
+        <ListView x:Name="TaskList" ItemsSource="{Binding SingleTasks}" MouseDoubleClick="TaskList_MouseDoubleClick" Margin="199,5,0,10">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding Id}" />
+                    <GridViewColumn Header="Title" Width="200" DisplayMemberBinding="{Binding Title}"/>
+                    <GridViewColumn Header="Description" Width="200" DisplayMemberBinding="{Binding Description}"/>
+                    <GridViewColumn Header="Day" Width="200" DisplayMemberBinding="{Binding Day,StringFormat='dd MMMM yyyy'}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Content="Get all tasks" Click="GetAllTasks_Click" HorizontalAlignment="Left" Margin="40,215,0,0" VerticalAlignment="Top" Height="40" Width="124"/>
+        <Button Content="Add task" Click="AddTask_Click" HorizontalAlignment="Left" Margin="40,282,0,0" VerticalAlignment="Top" Height="40" Width="124"/>
     </Grid>
 </Window>

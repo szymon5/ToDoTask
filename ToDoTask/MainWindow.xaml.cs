@@ -1,24 +1,50 @@
-﻿using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using ToDoTask.Interfaces;
+using ToDoTask.Models;
+using ToDoTask.ViewModel;
 
 namespace ToDoTask
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        private readonly IRepository _repository;
+
+        MainWindowViewModel MainWindowViewModel
+        {
+            get => DataContext as MainWindowViewModel;
+            set => DataContext = this;
+        }
+
+        public MainWindow(IRepository repository)
         {
             InitializeComponent();
+            _repository = repository;
+
+            DataContext = new MainWindowViewModel(repository);
+
+            MainWindowViewModel.GetAllTasks();
         }
+
+        private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e) =>
+            MainWindowViewModel.GetTasksByDay(TaskCalendar.SelectedDate ?? DateTime.Now);
+
+        private void AddTask_Click(object sender, RoutedEventArgs e)
+        {
+            var newForm = new AddNewTask(_repository);
+            newForm.Show();
+        }
+
+        private void TaskList_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (TaskList.SelectedItem != null)
+            {
+                var selectedUser = TaskList.SelectedItem as SingleTask;
+                var newForm = new EditRemove(_repository, selectedUser.Id);
+                newForm.Show();
+            }
+        }
+
+        private void GetAllTasks_Click(object sender, RoutedEventArgs e) => MainWindowViewModel.GetAllTasks();
     }
 }
