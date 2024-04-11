@@ -12,7 +12,7 @@ Application has an interface which contains:
 
 In the case of adding a new task and editing task, all data (Task Title, Task Description and Task Day) must be provided. Otherwise user will get a MessageBox error.
 
-Unit test must be executed one-by-one (not execute all). There are 12 unit tests and each test returns positive result.
+Unit tests must be executed one-by-one (not execute all). There are 12 unit tests and each test returns positive result.
 
 Note: If user uses the calendar and the wants to click on the button, user must click on the button two times because calendar must be "unclicked" ("unfocused").
 
