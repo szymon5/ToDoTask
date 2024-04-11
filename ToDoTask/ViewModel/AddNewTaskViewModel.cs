@@ -1,5 +1,4 @@
-﻿using System.Windows;
-using ToDoTask.Interfaces;
+﻿using ToDoTask.Interfaces;
 
 namespace ToDoTask.ViewModel
 {

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using ToDoTask.Interfaces;
+﻿using ToDoTask.Interfaces;
 using ToDoTask.Models;
 
 namespace ToDoTask.ViewModel
@@ -27,11 +21,15 @@ namespace ToDoTask.ViewModel
             this.singleTaskID = singleTaskID;
         }
 
-        public void GetSingleTaskToUpdate() => singleTask = _repository.GetTaskByID(singleTaskID);
+        public void GetSingleTaskToUpdate()
+        {
+            singleTask = _repository.GetTaskByID(singleTaskID);
+            day = singleTask.Day.ToString();
+        }
 
         public string EditTask(string title, string description)
         {
-            if(title != "" && description != "")
+            if(title != "" && description != "" && day != "")
             {
                 var updated = _repository.UpdateTask(new SingleTask()
                 {
